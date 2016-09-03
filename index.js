@@ -1,7 +1,7 @@
-// var url = "http://api.openweathermap.org/data/2.5/forecast/city?id=524901&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
-var url = "http://api.openweathermap.org/data/2.5/weather?zip=55345,us&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
-
-var months = ["placeholder", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var url = "http://api.openweathermap.org/data/2.5/weather?id=5037784&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
+// var url = "http://api.openweathermap.org/data/2.5/weather?zip=55345,us&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
+// minnetonka city ID  5037784
+// api.openweathermap.org/data/2.5/weather?id=2172797
 
 // This gives a "loading" icon when data is loading
 $body = $("body");
