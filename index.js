@@ -52,7 +52,7 @@ $.ajax({
   url: url,
   success: function(result){
     console.log(result);
-  if("rain" in result) {
+  if("rain" in result && !isNaN(result.rain["3h"])) {
     $("#rain").text("Rain in the last 3 hours: " + result.rain["3h"]);
   }
   if("snow" in result) {
@@ -108,10 +108,10 @@ $.ajax({
   $("#low").html(displayLow);
 
 
-// got NaN miles
-  // var visibilityMiles = Math.round(result.visibility * .00062);
-  // var displayVisibility = "visibility: " + visibilityMiles + " miles";
-  // $("#visibility").text(displayVisibility);
-
+if(!isNaN(result.visibility)) {
+  var visibilityMiles = Math.round(result.visibility * .00062);
+  var displayVisibility = "visibility: " + visibilityMiles + " miles";
+  $("#visibility").text(displayVisibility);
+}
 }
 });
