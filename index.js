@@ -99,14 +99,15 @@ $.ajax({
   var displaySunset = "Sunset: " + sunset + " p.m.";
   $("#weather_sunset").text(displaySunset);
 
-  var highTemp = kelvinToFahrenheit(result.main.temp_max);
-  var displayHigh = "High: " + highTemp + "&#176;F";
-  $("#high").html(displayHigh);
+  if (result.main.temp_max !== result.main.temp_min) {
+    var highTemp = kelvinToFahrenheit(result.main.temp_max);
+    var displayHigh = "High: " + highTemp + "&#176;F";
+    $("#high").html(displayHigh);
 
-  var lowTemp= kelvinToFahrenheit(result.main.temp_min);
-  var displayLow = "Low: " + lowTemp + "&#176;F";
-  $("#low").html(displayLow);
-
+    var lowTemp= kelvinToFahrenheit(result.main.temp_min);
+    var displayLow = "Low: " + lowTemp + "&#176;F";
+    $("#low").html(displayLow);
+  }
 
 if(!isNaN(result.visibility)) {
   var visibilityMiles = Math.round(result.visibility * .00062);
