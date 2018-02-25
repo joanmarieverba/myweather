@@ -1,4 +1,4 @@
-var url = "http://api.openweathermap.org/data/2.5/weather?id=5037784&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
+let url = "http://api.openweathermap.org/data/2.5/weather?id=5037784&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
 // var url = "http://api.openweathermap.org/data/2.5/weather?zip=55345,us&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
 // minnetonka city ID  5037784
 // api.openweathermap.org/data/2.5/weather?id=2172797
@@ -21,27 +21,27 @@ function mpsToMph(mps) {
 
 function unixToTime(timestamp) {
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    var date = new Date(timestamp*1000);
+    let date = new Date(timestamp*1000);
     // Hours part from the timestamp
-    var hours24 = date.getHours();
-    var hoursNumber = parseInt(hours24,10);
+    let hours24 = date.getHours();
+    let hoursNumber = parseInt(hours24,10);
     if (hoursNumber > 12) {hoursNumber = hoursNumber - 12;}
-    var hours12 = hoursNumber.toString();
+    let hours12 = hoursNumber.toString();
     // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
+    let minutes = "0" + date.getMinutes();
     // Seconds part from the timestamp
-    var seconds = "0" + date.getSeconds();
+    let seconds = "0" + date.getSeconds();
     // Will display time in 10:30:23 format
-    var formattedTime = hours12 + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    let formattedTime = hours12 + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
     return formattedTime;
 }
 
 function ampm(timestamp) {
-  var am = true;
-  var date = new Date(timestamp*1000);
+  let am = true;
+  let date = new Date(timestamp*1000);
   // Hours part from the timestamp
-  var hours24 = date.getHours();
-  var hoursNumber = parseInt(hours24,10);
+  let hours24 = date.getHours();
+  let hoursNumber = parseInt(hours24,10);
   if (hoursNumber > 12) {am = false;}
   return am;
 }
@@ -61,29 +61,29 @@ $.ajax({
 
   $("#weather_place").text(result.name);
 
-  var cloudiness = result.weather[0].description + ", cloudiness: " + result.clouds.all +"%"
+  let cloudiness = result.weather[0].description + ", cloudiness: " + result.clouds.all +"%"
   $("#weather_desc").text(cloudiness);
 
 
 
-  var iconUrl = 'http://openweathermap.org/img/w/'+result.weather[0].icon+'.png'
+  let iconUrl = 'http://openweathermap.org/img/w/'+result.weather[0].icon+'.png'
 
   $("#weather_img_icon").attr("src", iconUrl);
 
-  var currentTemp = kelvinToFahrenheit(result.main.temp);
-  var displayTemp = "Temperature " + currentTemp + "&#176;F";
+  let currentTemp = kelvinToFahrenheit(result.main.temp);
+  let displayTemp = "Temperature " + currentTemp + "&#176;F";
   $("#weather_tempNow").html(displayTemp);
 
-  var windSpeed = mpsToMph(result.wind.speed)
-  var displayWindSpeed = "wind " + windSpeed + " mph";
+  let windSpeed = mpsToMph(result.wind.speed)
+  let displayWindSpeed = "wind " + windSpeed + " mph";
   $("#weather_wind").text(displayWindSpeed);
 
-  var displayHumidity = "Humidity " + result.main.humidity + "%"
+  let displayHumidity = "Humidity " + result.main.humidity + "%"
   $("#weather_humidity").text(displayHumidity);
 
-  var onlyTime = unixToTime(result.dt);
-  var amOrPm = ampm(result.dt);
-  var displayTime = ""
+  let onlyTime = unixToTime(result.dt);
+  let amOrPm = ampm(result.dt);
+  let displayTime = ""
   if (amOrPm) {
     displayTime =   "Current time: " + onlyTime + " a.m.";
   } else {
@@ -91,27 +91,27 @@ $.ajax({
   }
   $("#weather_time").text(displayTime);
 
-  var sunrise = unixToTime(result.sys.sunrise);
-  var displaySunrise = "Sunrise: " + sunrise + " a.m.";
+  let sunrise = unixToTime(result.sys.sunrise);
+  let displaySunrise = "Sunrise: " + sunrise + " a.m.";
   $("#weather_sunrise").text(displaySunrise);
 
-  var sunset = unixToTime(result.sys.sunset);
-  var displaySunset = "Sunset: " + sunset + " p.m.";
+  let sunset = unixToTime(result.sys.sunset);
+  let displaySunset = "Sunset: " + sunset + " p.m.";
   $("#weather_sunset").text(displaySunset);
 
   if (result.main.temp_max !== result.main.temp_min) {
-    var highTemp = kelvinToFahrenheit(result.main.temp_max);
-    var displayHigh = "High: " + highTemp + "&#176;F";
+    let highTemp = kelvinToFahrenheit(result.main.temp_max);
+    let displayHigh = "High: " + highTemp + "&#176;F";
     $("#high").html(displayHigh);
 
-    var lowTemp= kelvinToFahrenheit(result.main.temp_min);
-    var displayLow = "Low: " + lowTemp + "&#176;F";
+    let lowTemp= kelvinToFahrenheit(result.main.temp_min);
+    let displayLow = "Low: " + lowTemp + "&#176;F";
     $("#low").html(displayLow);
   }
 
 if(!isNaN(result.visibility)) {
-  var visibilityMiles = Math.round(result.visibility * .00062);
-  var displayVisibility = "visibility: " + visibilityMiles + " miles";
+  let visibilityMiles = Math.round(result.visibility * .00062);
+  let displayVisibility = "visibility: " + visibilityMiles + " miles";
   $("#visibility").text(displayVisibility);
 }
 }
