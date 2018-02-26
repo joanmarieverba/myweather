@@ -32,7 +32,7 @@ function unixToTime(timestamp) {
     // Seconds part from the timestamp
     let seconds = "0" + date.getSeconds();
     // Will display time in 10:30:23 format
-    let formattedTime = hours12 + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    let formattedTime = `${hours12}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
     return formattedTime;
 }
 
@@ -53,17 +53,16 @@ $.ajax({
   success: function(result){
     console.log(result);
   if("rain" in result && !isNaN(result.rain["3h"])) {
-    $("#rain").text("Rain in the last 3 hours: " + result.rain["3h"]);
+    $("#rain").text(`Rain in the last 3 hours: ${result.rain["3h"]}`);
   }
   if("snow" in result) {
-    $("#snow").text("Snow in the last 3 hours: " + result.snow["3h"]);
+    $("#snow").text(`Snow in the last 3 hours: ${result.snow["3h"]}`);
   }
 
   $("#weather_place").text(result.name);
 
-  let cloudiness = result.weather[0].description + ", cloudiness: " + result.clouds.all +"%"
+  let cloudiness = `${result.weather[0].description}, cloudiness: ${result.clouds.all}%`
   $("#weather_desc").text(cloudiness);
-
 
 
   let iconUrl = 'http://openweathermap.org/img/w/'+result.weather[0].icon+'.png'
@@ -71,47 +70,47 @@ $.ajax({
   $("#weather_img_icon").attr("src", iconUrl);
 
   let currentTemp = kelvinToFahrenheit(result.main.temp);
-  let displayTemp = "Temperature " + currentTemp + "&#176;F";
+  let displayTemp = `Temperature ${currentTemp}&#176;F`;
   $("#weather_tempNow").html(displayTemp);
 
   let windSpeed = mpsToMph(result.wind.speed)
-  let displayWindSpeed = "wind " + windSpeed + " mph";
+  let displayWindSpeed = `wind ${windSpeed} mph`;
   $("#weather_wind").text(displayWindSpeed);
 
-  let displayHumidity = "Humidity " + result.main.humidity + "%"
+  let displayHumidity = `Humidity ${result.main.humidity}%`
   $("#weather_humidity").text(displayHumidity);
 
   let onlyTime = unixToTime(result.dt);
   let amOrPm = ampm(result.dt);
   let displayTime = ""
   if (amOrPm) {
-    displayTime =   "Current time: " + onlyTime + " a.m.";
+    displayTime =   `Current time: ${onlyTime} a.m.`;
   } else {
-    displayTime =   "Current time: " + onlyTime + " p.m.";
+    displayTime =   `Current time: ${onlyTime} p.m.`;
   }
   $("#weather_time").text(displayTime);
 
   let sunrise = unixToTime(result.sys.sunrise);
-  let displaySunrise = "Sunrise: " + sunrise + " a.m.";
+  let displaySunrise = `Sunrise: ${sunrise} a.m.`;
   $("#weather_sunrise").text(displaySunrise);
 
   let sunset = unixToTime(result.sys.sunset);
-  let displaySunset = "Sunset: " + sunset + " p.m.";
+  let displaySunset = `Sunset: ${sunset} p.m.`;
   $("#weather_sunset").text(displaySunset);
 
   if (result.main.temp_max !== result.main.temp_min) {
     let highTemp = kelvinToFahrenheit(result.main.temp_max);
-    let displayHigh = "High: " + highTemp + "&#176;F";
+    let displayHigh = `High: ${highTemp}&#176;F`;
     $("#high").html(displayHigh);
 
     let lowTemp= kelvinToFahrenheit(result.main.temp_min);
-    let displayLow = "Low: " + lowTemp + "&#176;F";
+    let displayLow = `Low: ${lowTemp}&#176;F`;
     $("#low").html(displayLow);
   }
 
 if(!isNaN(result.visibility)) {
   let visibilityMiles = Math.round(result.visibility * .00062);
-  let displayVisibility = "visibility: " + visibilityMiles + " miles";
+  let displayVisibility = `visibility: ${visibilityMiles} miles`;
   $("#visibility").text(displayVisibility);
 }
 }
