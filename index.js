@@ -2,6 +2,7 @@ let url = "http://api.openweathermap.org/data/2.5/weather?id=5037784&APPID=2ab5a
 // var url = "http://api.openweathermap.org/data/2.5/weather?zip=55345,us&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
 // minnetonka city ID  5037784
 // api.openweathermap.org/data/2.5/weather?id=2172797
+// List of city ID city.list.json.gz can be downloaded here http://bulk.openweathermap.org/sample/
 
 // This gives a "loading" icon when data is loading
 $body = $("body");
