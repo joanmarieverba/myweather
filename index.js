@@ -1,6 +1,6 @@
-let url = "http://api.openweathermap.org/data/2.5/weather?id=5037784&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
+let url = "http://api.openweathermap.org/data/2.5/weather?id=5037649&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
 // var url = "http://api.openweathermap.org/data/2.5/weather?zip=55345,us&APPID=2ab5a5b18737e945b5af9cae2e8e1ffe";
-// minnetonka city ID  5037784
+// minnetonka city ID  5037784  Minneapolis 5037649
 // api.openweathermap.org/data/2.5/weather?id=2172797
 // List of city ID city.list.json.gz can be downloaded here http://bulk.openweathermap.org/sample/
 
