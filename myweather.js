@@ -43,7 +43,7 @@ function ampm(timestamp) {
   // Hours part from the timestamp
   let hours24 = date.getHours();
   let hoursNumber = parseInt(hours24,10);
-  if (hoursNumber > 12) {am = false;}
+  if (hoursNumber >= 12) {am = false;}
   return am;
 }
 
